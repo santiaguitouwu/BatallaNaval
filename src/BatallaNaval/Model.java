@@ -98,6 +98,11 @@ public class Model {
 
             int xs = Integer.parseInt(digitos[0]);
             int ys = Integer.parseInt(digitos[1]);
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[xs][ys] > 10 && posiblyBoard[xs][ys] < 100) {
+                posiblyBoard[x][y] = 100 + number;
+                posiblyBoard[xs][ys] = 100 + friend;
+            }
         }
     }
 }
