@@ -87,22 +87,614 @@ public class Model {
      * @param x
      * @param y
      */
-    public void verifySunken(int x, int y){
-        int number = Integer.parseInt(String.valueOf(x) + String.valueOf(y));
-        int position = usedShips.indexOf(number);
+    public void verifySunken(int x, int y) {
+        int numero = Integer.parseInt(String.valueOf(x) + String.valueOf(y));
+        int posicion = usedShips.indexOf(numero);
 
-        if(position == 0){
+        if (posicion == 0) {
             int friend = usedShips.get(1);
-            String numberString = String.valueOf(friend);
-            String[] digitos = numberString.split("(?<=.)");
 
-            int xs = Integer.parseInt(digitos[0]);
-            int ys = Integer.parseInt(digitos[1]);
+            String number = String.valueOf(friend);
 
-            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[xs][ys] > 10 && posiblyBoard[xs][ys] < 100) {
-                posiblyBoard[x][y] = 100 + number;
-                posiblyBoard[xs][ys] = 100 + friend;
+            String[] digitos = number.split("(?<=.)");
+
+            int equis = Integer.parseInt(digitos[0]);
+            int ye = Integer.parseInt(digitos[1]);
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+            }
+        }
+        if (posicion == 1) {
+            int friend = usedShips.get(0);
+
+            String number = String.valueOf(friend);
+
+            String[] digitos = number.split("(?<=.)");
+
+            int equis = Integer.parseInt(digitos[0]);
+            int ye = Integer.parseInt(digitos[1]);
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+            }
+        }
+        if (posicion == 2) {
+            int friend = usedShips.get(3);
+
+            String number = String.valueOf(friend);
+
+            String[] digitos = number.split("(?<=.)");
+
+            int equis = Integer.parseInt(digitos[0]);
+            int ye = Integer.parseInt(digitos[1]);
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+            }
+        }
+        if (posicion == 3) {
+            int friend = usedShips.get(2);
+
+            String number = String.valueOf(friend);
+
+            String[] digitos = number.split("(?<=.)");
+
+            int equis = Integer.parseInt(digitos[0]);
+            int ye = Integer.parseInt(digitos[1]);
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+            }
+        }
+        if (posicion == 4) {
+            int friend = usedShips.get(5);
+
+            String number = String.valueOf(friend);
+
+            String[] digitos = number.split("(?<=.)");
+
+            int equis = Integer.parseInt(digitos[0]);
+            int ye = Integer.parseInt(digitos[1]);
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+            }
+        }
+        if (posicion == 5) {
+            int friend = usedShips.get(4);
+
+            String number = String.valueOf(friend);
+
+            String[] digitos = number.split("(?<=.)");
+
+            int equis = Integer.parseInt(digitos[0]);
+            int ye = Integer.parseInt(digitos[1]);
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+            }
+        }
+        if (posicion == 6) {
+
+            /**PRUEBA**/
+
+            int friend = usedShips.get(7);
+            int friend1 = usedShips.get(8);
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+
+            if (friend < 10) {
+                equis = 0;
+                ye = friend;
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+            }
+        }
+        if (posicion == 7) {
+            int friend = usedShips.get(6);
+            int friend1 = usedShips.get(8);
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+
+            if (friend < 10) {
+                equis = 0;
+                ye = friend;
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+            }
+
+
+        }
+        if (posicion == 8) {
+            int friend = usedShips.get(7);
+            int friend1 = usedShips.get(6);
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+
+            if (friend < 10) {
+                equis = 0;
+                ye = friend;
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+            }
+        }
+        if (posicion == 9) {
+            int friend = usedShips.get(10);
+            int friend1 = usedShips.get(11);
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+
+            if (friend < 10) {
+                equis = 0;
+                ye = friend;
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+            }
+        }
+        if (posicion == 10) {
+            int friend = usedShips.get(9);
+            int friend1 = usedShips.get(11);
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+
+            if (friend < 10) {
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+                equis = 0;
+                ye = friend;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+            }
+        }
+        if (posicion == 11) {
+            int friend = usedShips.get(9);
+            int friend1 = usedShips.get(10);
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+
+            if (friend < 10) {
+                equis = 0;
+                ye = friend;
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+            }
+        }
+        if (posicion == 12) {
+
+            int friend = usedShips.get(13);
+            int friend1 = usedShips.get(14);
+            int friend2 = usedShips.get(15);
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+            int equis2 = 12;
+            int ye2 = 12;
+
+
+            if (friend < 10) {
+                equis = 0;
+                ye = friend;
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+            }
+            if (friend2 < 10) {
+                equis2 = 0;
+                ye2 = friend2;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+            if (equis2 == 12 && ye2 == 12) {
+
+                String number2 = String.valueOf(friend2);
+                String[] digitos2 = number2.split("(?<=.)");
+
+                equis2 = Integer.parseInt(digitos2[0]);
+                ye2 = Integer.parseInt(digitos2[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100 &&
+                    posiblyBoard[equis2][ye2] > 10 && posiblyBoard[equis2][ye2] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+                posiblyBoard[equis2][ye2] = 100 + friend2;
+            }
+        }
+        if (posicion == 13) {
+
+
+            int friend = usedShips.get(12);
+            int friend1 = usedShips.get(14);
+            int friend2 = usedShips.get(15);
+
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+            int equis2 = 12;
+            int ye2 = 12;
+
+
+            if (friend < 10) {
+                equis = 0;
+                ye = friend;
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+            }
+            if (friend2 < 10) {
+                equis2 = 0;
+                ye2 = friend2;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+            if (equis2 == 12 && ye2 == 12) {
+
+                String number2 = String.valueOf(friend2);
+                String[] digitos2 = number2.split("(?<=.)");
+
+                equis2 = Integer.parseInt(digitos2[0]);
+                ye2 = Integer.parseInt(digitos2[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100 &&
+                    posiblyBoard[equis2][ye2] > 10 && posiblyBoard[equis2][ye2] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+                posiblyBoard[equis2][ye2] = 100 + friend2;
+            }
+
+        }
+        if (posicion == 14) {
+            int friend = usedShips.get(13);
+            int friend1 = usedShips.get(12);
+            int friend2 = usedShips.get(15);
+
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+            int equis2 = 12;
+            int ye2 = 12;
+
+
+            if (friend < 10) {
+                equis = 0;
+                ye = friend;
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+            }
+            if (friend2 < 10) {
+                equis2 = 0;
+                ye2 = friend2;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+            if (equis2 == 12 && ye2 == 12) {
+
+                String number2 = String.valueOf(friend2);
+                String[] digitos2 = number2.split("(?<=.)");
+
+                equis2 = Integer.parseInt(digitos2[0]);
+                ye2 = Integer.parseInt(digitos2[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100 &&
+                    posiblyBoard[equis2][ye2] > 10 && posiblyBoard[equis2][ye2] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+                posiblyBoard[equis2][ye2] = 100 + friend2;
+            }
+        }
+        if (posicion == 15) {
+            int friend = usedShips.get(13);
+            int friend1 = usedShips.get(14);
+            int friend2 = usedShips.get(12);
+
+
+            int equis = 12;
+            int ye = 12;
+            int equis1 = 12;
+            int ye1 = 12;
+            int equis2 = 12;
+            int ye2 = 12;
+
+
+            if (friend < 10) {
+                equis = 0;
+                ye = friend;
+            }
+            if (friend1 < 10) {
+                equis1 = 0;
+                ye1 = friend1;
+            }
+            if (friend2 < 10) {
+                equis2 = 0;
+                ye2 = friend2;
+            }
+
+            if (equis == 12 && ye == 12) {
+                String number = String.valueOf(friend);
+                String[] digitos = number.split("(?<=.)");
+
+                equis = Integer.parseInt(digitos[0]);
+                ye = Integer.parseInt(digitos[1]);
+
+            }
+            if (equis1 == 12 && ye1 == 12) {
+                String number1 = String.valueOf(friend1);
+
+                String[] digitos1 = number1.split("(?<=.)");
+
+                equis1 = Integer.parseInt(digitos1[0]);
+                ye1 = Integer.parseInt(digitos1[1]);
+            }
+            if (equis2 == 12 && ye2 == 12) {
+
+                String number2 = String.valueOf(friend2);
+                String[] digitos2 = number2.split("(?<=.)");
+
+                equis2 = Integer.parseInt(digitos2[0]);
+                ye2 = Integer.parseInt(digitos2[1]);
+            }
+
+
+            if (posiblyBoard[x][y] > 10 && posiblyBoard[x][y] < 100 && posiblyBoard[equis][ye] > 10 && posiblyBoard[equis][ye] < 100 &&
+                    posiblyBoard[equis1][ye1] > 10 && posiblyBoard[equis1][ye1] < 100 &&
+                    posiblyBoard[equis2][ye2] > 10 && posiblyBoard[equis2][ye2] < 100) {
+                posiblyBoard[x][y] = 100 + numero;
+                posiblyBoard[equis][ye] = 100 + friend;
+                posiblyBoard[equis1][ye1] = 100 + friend1;
+                posiblyBoard[equis2][ye2] = 100 + friend2;
             }
         }
     }
 }
+
