@@ -522,7 +522,7 @@ public class Machine {
      *Return main board
      */
     public int[][] getmainBoard() {
-        return mainBoard;
+        return this.mainBoard;
     }
     public void verifyingSunk(int X, int Y) {
         int numero = Integer.parseInt(String.valueOf(X) + String.valueOf(Y));
