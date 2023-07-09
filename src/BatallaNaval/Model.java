@@ -1065,9 +1065,9 @@ public class Model {
     }
     public void verDestruidos() {
         destruidos = 0;
-        for (int i = 0; i < tableroPpal.length; i++) {
-            for (int j = 0; j < tableroPpal[0].length; j++) {
-                if (tableroPpal[i][j] > 99) {
+        for (int i = 0; i < posiblyBoard.length; i++) {
+            for (int j = 0; j < posiblyBoard[0].length; j++) {
+                if (posiblyBoard[i][j] > 99) {
                     destruidos++;
                 }
             }
