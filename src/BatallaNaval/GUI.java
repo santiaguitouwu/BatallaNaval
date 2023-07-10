@@ -13,7 +13,7 @@ import java.awt.event.MouseListener;
  * @autor Carlos Felipe Montoya carlos.felipe.montoya@correounivalle.edu.co
  * @version v.1.0.0 date:21/03/2023
  */
-public class GUIGridBagLayout extends JFrame {
+public class GUI extends JFrame {
     public static final String MENSAJE_INICIO = "Bienvenido a BattleShip \nOprime el boton 'Jugar' para iniciar el juego\n-El juego consiste en que deberás acabar con la flota enemiga sin verla\n-Posiciona tus barcos pulsando las casillas de tu territorio, teniendo en cuenta que:\n Deberás posicionar 4 fragatas, serán pintadas de color gris (1 casilla cada una)\n Deberás posicionar 3 destructores, serán pintadas de color verde (2 casilla cada una)\n Deberás posicionar 2 submarinos, serán pintadas de color magenta (3 casilla cada una)\n Deberás posicionar 1 portaaviones, serán pintadas de color carne  (4 casilla cada una)\n NOTA: para posicionar submarinos y portaaviones deberás hacerlo de forma ordenada (una tras otra)\n-Para hundir los barcos enemigos deberás usar las casillas del territorio enemigo\n Segun el numero de casillas del barco, podrás dañarlo o hundirlo\n Si se pinta de amarillo, faltan partes por hundir\n Si se pinta de rojo, has hundido ese barco\n-El juego termina cuando uno de los dos hunde todos los barcos del oponente\n-Podrás ver la matriz enemiga (territorio) si pulsas el boton 'Barcos enemigos'";
     private Header headerProject;
     private JButton jugar;
@@ -40,7 +40,7 @@ public class GUIGridBagLayout extends JFrame {
     public Machine cpu;
 
 
-    public GUIGridBagLayout() {
+    public GUI() {
         this.initGUI();
         this.setTitle("Battleship");
         this.setSize(800, 600);
@@ -66,10 +66,10 @@ public class GUIGridBagLayout extends JFrame {
         constraints.fill = 2;
         this.add(this.headerProject, constraints);
         Border border = BorderFactory.createLineBorder(Color.black, 1);
-        int[][] tableroPos = this.modelGame.getTableroPos();
-        int[][] tableroPpal = this.cpu.getTableroPpal();
-        this.modelGame.tablerosIniciales();
-        this.cpu.tablerosIniciales();
+        int[][] tableroPos = this.modelGame.getPosiblyBoard();
+        int[][] tableroPpal = this.cpu.getmainBoard();
+        this.modelGame.initialBoard();
+        this.cpu.boardsInitials();
 
         int i;
         for(i = 0; i < this.label.length; ++i) {
@@ -218,7 +218,7 @@ public class GUIGridBagLayout extends JFrame {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            new GUIGridBagLayout();
+            new GUI();
         });
     }
 
@@ -227,137 +227,137 @@ public class GUIGridBagLayout extends JFrame {
         }
 
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == GUIGridBagLayout.this.jugar) {
+            if (e.getSource() == GUI.this.jugar) {
                 int i;
-                for(i = 0; i < GUIGridBagLayout.this.label.length; ++i) {
-                    GUIGridBagLayout.this.label[i].addMouseListener(GUIGridBagLayout.this.escucha);
+                for(i = 0; i < GUI.this.label.length; ++i) {
+                    GUI.this.label[i].addMouseListener(GUI.this.escucha);
                 }
 
-                for(i = 0; i < GUIGridBagLayout.this.label.length; ++i) {
-                    GUIGridBagLayout.this.label2[i].addMouseListener(GUIGridBagLayout.this.escucha);
+                for(i = 0; i < GUI.this.label.length; ++i) {
+                    GUI.this.label2[i].addMouseListener(GUI.this.escucha);
                 }
 
-                GUIGridBagLayout.this.modelGame.llenarAtaque();
-                GUIGridBagLayout.this.cpu.posicionarCPU();
-                GUIGridBagLayout.this.cpu.igualarTablero();
+                GUI.this.modelGame.fillAttack();
+                GUI.this.cpu.positionMachine();
+                GUI.this.cpu.equalTable();
             }
 
-            if (e.getSource() == GUIGridBagLayout.this.salir) {
-                GUIGridBagLayout.this.cpu.imprimir();
+            if (e.getSource() == GUI.this.salir) {
+                GUI.this.cpu.print();
             }
 
-            if (e.getSource() == GUIGridBagLayout.this.ayuda) {
+            if (e.getSource() == GUI.this.ayuda) {
                 JOptionPane.showMessageDialog((Component)null, "Bienvenido a BattleShip \nOprime el boton 'Jugar' para iniciar el juego\n-El juego consiste en que deberás acabar con la flota enemiga sin verla\n-Posiciona tus barcos pulsando las casillas de tu territorio, teniendo en cuenta que:\n Deberás posicionar 4 fragatas, serán pintadas de color gris (1 casilla cada una)\n Deberás posicionar 3 destructores, serán pintadas de color verde (2 casilla cada una)\n Deberás posicionar 2 submarinos, serán pintadas de color magenta (3 casilla cada una)\n Deberás posicionar 1 portaaviones, serán pintadas de color carne  (4 casilla cada una)\n NOTA: para posicionar submarinos y portaaviones deberás hacerlo de forma ordenada (una tras otra)\n-Para hundir los barcos enemigos deberás usar las casillas del territorio enemigo\n Segun el numero de casillas del barco, podrás dañarlo o hundirlo\n Si se pinta de amarillo, faltan partes por hundir\n Si se pinta de rojo, has hundido ese barco\n-El juego termina cuando uno de los dos hunde todos los barcos del oponente\n-Podrás ver la matriz enemiga (territorio) si pulsas el boton 'Barcos enemigos'", "Instrucciones", 1);
             }
 
         }
 
         public void mouseClicked(MouseEvent e) {
-            int[][] tableroPos = GUIGridBagLayout.this.modelGame.getTableroPos();
-            int[][] tableroPpal = GUIGridBagLayout.this.cpu.getTableroPpal();
+            int[][] tableroPos = GUI.this.modelGame.getPosiblyBoard();
+            int[][] tableroPpal = GUI.this.cpu.getmainBoard();
 
             JLabel[] var10000;
             String var10001;
             int i;
             int x;
             int y;
-            for(i = 0; i < GUIGridBagLayout.this.label.length; ++i) {
-                if (e.getSource() == GUIGridBagLayout.this.label[i]) {
+            for(i = 0; i < GUI.this.label.length; ++i) {
+                if (e.getSource() == GUI.this.label[i]) {
                     if (i < 10) {
-                        GUIGridBagLayout.this.lugar0 = i;
-                        GUIGridBagLayout.this.lugar1 = 0;
+                        GUI.this.lugar0 = i;
+                        GUI.this.lugar1 = 0;
                     }
 
                     if (i >= 10 && i < 20) {
-                        GUIGridBagLayout.this.lugar0 = i - 10;
-                        GUIGridBagLayout.this.lugar1 = 1;
+                        GUI.this.lugar0 = i - 10;
+                        GUI.this.lugar1 = 1;
                     }
 
                     if (i >= 20 && i < 30) {
-                        GUIGridBagLayout.this.lugar0 = i - 20;
-                        GUIGridBagLayout.this.lugar1 = 2;
+                        GUI.this.lugar0 = i - 20;
+                        GUI.this.lugar1 = 2;
                     }
 
                     if (i >= 30 && i < 40) {
-                        GUIGridBagLayout.this.lugar0 = i - 30;
-                        GUIGridBagLayout.this.lugar1 = 3;
+                        GUI.this.lugar0 = i - 30;
+                        GUI.this.lugar1 = 3;
                     }
 
                     if (i >= 40 && i < 50) {
-                        GUIGridBagLayout.this.lugar0 = i - 40;
-                        GUIGridBagLayout.this.lugar1 = 4;
+                        GUI.this.lugar0 = i - 40;
+                        GUI.this.lugar1 = 4;
                     }
 
                     if (i >= 50 && i < 60) {
-                        GUIGridBagLayout.this.lugar0 = i - 50;
-                        GUIGridBagLayout.this.lugar1 = 5;
+                        GUI.this.lugar0 = i - 50;
+                        GUI.this.lugar1 = 5;
                     }
 
                     if (i >= 60 && i < 70) {
-                        GUIGridBagLayout.this.lugar0 = i - 60;
-                        GUIGridBagLayout.this.lugar1 = 6;
+                        GUI.this.lugar0 = i - 60;
+                        GUI.this.lugar1 = 6;
                     }
 
                     if (i >= 70 && i < 80) {
-                        GUIGridBagLayout.this.lugar0 = i - 70;
-                        GUIGridBagLayout.this.lugar1 = 7;
+                        GUI.this.lugar0 = i - 70;
+                        GUI.this.lugar1 = 7;
                     }
 
                     if (i >= 80 && i < 90) {
-                        GUIGridBagLayout.this.lugar0 = i - 80;
-                        GUIGridBagLayout.this.lugar1 = 8;
+                        GUI.this.lugar0 = i - 80;
+                        GUI.this.lugar1 = 8;
                     }
 
                     if (i >= 90 && i < 100) {
-                        GUIGridBagLayout.this.lugar0 = i - 90;
-                        GUIGridBagLayout.this.lugar1 = 9;
+                        GUI.this.lugar0 = i - 90;
+                        GUI.this.lugar1 = 9;
                     }
 
-                    GUIGridBagLayout.this.modelGame.posicionar(GUIGridBagLayout.this.lugar1, GUIGridBagLayout.this.lugar0);
+                    GUI.this.modelGame.takePosition(GUI.this.lugar1, GUI.this.lugar0);
 
                     for(x = 0; x < tableroPos.length; ++x) {
                         for(y = 0; y < tableroPos[0].length; ++y) {
                             if (tableroPos[x][y] == 1) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.CYAN);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] == 2) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.GRAY);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] == 3) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.GREEN);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] == 4) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.MAGENTA);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] == 5) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.PINK);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
@@ -366,95 +366,95 @@ public class GUIGridBagLayout extends JFrame {
                 }
             }
 
-            for(i = 0; i < GUIGridBagLayout.this.label2.length; ++i) {
-                if (e.getSource() == GUIGridBagLayout.this.label2[i]) {
+            for(i = 0; i < GUI.this.label2.length; ++i) {
+                if (e.getSource() == GUI.this.label2[i]) {
                     if (i < 10) {
-                        GUIGridBagLayout.this.lugar2 = i;
-                        GUIGridBagLayout.this.lugar3 = 0;
+                        GUI.this.lugar2 = i;
+                        GUI.this.lugar3 = 0;
                     }
 
                     if (i >= 10 && i < 20) {
-                        GUIGridBagLayout.this.lugar2 = i - 10;
-                        GUIGridBagLayout.this.lugar3 = 1;
+                        GUI.this.lugar2 = i - 10;
+                        GUI.this.lugar3 = 1;
                     }
 
                     if (i >= 20 && i < 30) {
-                        GUIGridBagLayout.this.lugar2 = i - 20;
-                        GUIGridBagLayout.this.lugar3 = 2;
+                        GUI.this.lugar2 = i - 20;
+                        GUI.this.lugar3 = 2;
                     }
 
                     if (i >= 30 && i < 40) {
-                        GUIGridBagLayout.this.lugar2 = i - 30;
-                        GUIGridBagLayout.this.lugar3 = 3;
+                        GUI.this.lugar2 = i - 30;
+                        GUI.this.lugar3 = 3;
                     }
 
                     if (i >= 40 && i < 50) {
-                        GUIGridBagLayout.this.lugar2 = i - 40;
-                        GUIGridBagLayout.this.lugar3 = 4;
+                        GUI.this.lugar2 = i - 40;
+                        GUI.this.lugar3 = 4;
                     }
 
                     if (i >= 50 && i < 60) {
-                        GUIGridBagLayout.this.lugar2 = i - 50;
-                        GUIGridBagLayout.this.lugar3 = 5;
+                        GUI.this.lugar2 = i - 50;
+                        GUI.this.lugar3 = 5;
                     }
 
                     if (i >= 60 && i < 70) {
-                        GUIGridBagLayout.this.lugar2 = i - 60;
-                        GUIGridBagLayout.this.lugar3 = 6;
+                        GUI.this.lugar2 = i - 60;
+                        GUI.this.lugar3 = 6;
                     }
 
                     if (i >= 70 && i < 80) {
-                        GUIGridBagLayout.this.lugar2 = i - 70;
-                        GUIGridBagLayout.this.lugar3 = 7;
+                        GUI.this.lugar2 = i - 70;
+                        GUI.this.lugar3 = 7;
                     }
 
                     if (i >= 80 && i < 90) {
-                        GUIGridBagLayout.this.lugar2 = i - 80;
-                        GUIGridBagLayout.this.lugar3 = 8;
+                        GUI.this.lugar2 = i - 80;
+                        GUI.this.lugar3 = 8;
                     }
 
                     if (i >= 90 && i < 100) {
-                        GUIGridBagLayout.this.lugar2 = i - 90;
-                        GUIGridBagLayout.this.lugar3 = 9;
+                        GUI.this.lugar2 = i - 90;
+                        GUI.this.lugar3 = 9;
                     }
 
-                    GUIGridBagLayout.this.modelGame.ataqueCPU();
-                    GUIGridBagLayout.this.cpu.atacar(GUIGridBagLayout.this.lugar3, GUIGridBagLayout.this.lugar2);
+                    GUI.this.modelGame.CPUattack();
+                    GUI.this.cpu.attack(GUI.this.lugar3, GUI.this.lugar2);
 
                     for(x = 0; x < tableroPpal.length; ++x) {
                         for(y = 0; y < tableroPpal[0].length; ++y) {
                             if (tableroPpal[x][y] < 9) {
-                                var10000 = GUIGridBagLayout.this.label2;
+                                var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.CYAN);
-                                var10000 = GUIGridBagLayout.this.label2;
+                                var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPpal[x][y] == 15) {
-                                var10000 = GUIGridBagLayout.this.label2;
+                                var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setForeground(Color.RED);
-                                var10000 = GUIGridBagLayout.this.label2;
+                                var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setText("X");
                             }
 
                             if (tableroPpal[x][y] > 15 && tableroPpal[x][y] < 100) {
-                                var10000 = GUIGridBagLayout.this.label2;
+                                var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.YELLOW);
-                                var10000 = GUIGridBagLayout.this.label2;
+                                var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPpal[x][y] >= 100) {
-                                var10000 = GUIGridBagLayout.this.label2;
+                                var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.RED);
-                                var10000 = GUIGridBagLayout.this.label2;
+                                var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
@@ -464,37 +464,37 @@ public class GUIGridBagLayout extends JFrame {
                     for(x = 0; x < tableroPos.length; ++x) {
                         for(y = 0; y < tableroPos[0].length; ++y) {
                             if (tableroPos[x][y] < 9) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.CYAN);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] == 15) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setForeground(Color.RED);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setText("X");
                             }
 
                             if (tableroPos[x][y] > 15 && tableroPpal[x][y] < 100) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.YELLOW);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] >= 100) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.RED);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
@@ -504,46 +504,46 @@ public class GUIGridBagLayout extends JFrame {
                     for(x = 0; x < tableroPos.length; ++x) {
                         for(y = 0; y < tableroPos[0].length; ++y) {
                             if (tableroPos[x][y] == 1) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.CYAN);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] == 2) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.GRAY);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] == 3) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.GREEN);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] == 4) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.MAGENTA);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
 
                             if (tableroPos[x][y] == 5) {
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.PINK);
-                                var10000 = GUIGridBagLayout.this.label;
+                                var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
                             }
@@ -552,10 +552,10 @@ public class GUIGridBagLayout extends JFrame {
                 }
             }
 
-            GUIGridBagLayout.this.modelGame.verDestruidos();
-            GUIGridBagLayout.this.cpu.verDestruidos();
-            GUIGridBagLayout.this.modelGame.ganadorCPU();
-            GUIGridBagLayout.this.cpu.ganadorCPU();
+            GUI.this.modelGame.verDestruidos();
+            GUI.this.cpu.showDestroyed();
+            GUI.this.modelGame.ganadorCPU();
+            GUI.this.cpu.playerWin();
         }
 
         public void mousePressed(MouseEvent e) {

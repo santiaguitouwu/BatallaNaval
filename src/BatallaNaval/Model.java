@@ -21,12 +21,6 @@ public class Model {
     /*
     *Initialize pisibleeAtack array
      */
-    public void fillAttack(){
-        for (int i = 0; i<=99; i++){
-            posibleeAtack.add(i);
-        }
-    }
-
     /**
      * select a random value for the movement of opponent
      * @return number of the select movement
@@ -39,6 +33,12 @@ public class Model {
         posibleeAtack.remove(number);
 
         return select;
+    }
+
+    public void fillAttack(){
+        for (int i = 0; i<=99; i++){
+            posibleeAtack.add(i);
+        }
     }
 
     /**
