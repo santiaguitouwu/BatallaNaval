@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 
 /**
  * This class is used for ...
- * @autor Carlos Felipe Montoya carlos.felipe.montoya@correounivalle.edu.co
+ * @autor Santiago Jimenez / José Castellanos / Sarah Cardinaux
  * @version v.1.0.0 date:21/03/2023
  */
 public class GUI extends JFrame {
