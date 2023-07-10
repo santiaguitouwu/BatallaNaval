@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.ImageIcon;
+
 
 /**
  * This class is used for ...
@@ -38,6 +40,8 @@ public class GUI extends JFrame {
     private JLabel[] label2 = new JLabel[100];
     private Model modelGame;
     public Machine cpu;
+
+
 
 
     public GUI() {
@@ -137,7 +141,7 @@ public class GUI extends JFrame {
         constraints.anchor = 21;
         this.add(this.ayuda, constraints);
         this.salir = new JButton("Barcos enemigos");
-        this.salir.addActionListener(this.escucha);
+        this.salir.setVisible(false);
         constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
@@ -205,8 +209,8 @@ public class GUI extends JFrame {
         constraints.anchor = 17;
         this.add(this.jugar, constraints);
         this.mensajeSalida = new JTextArea(2, 10);
-        this.mensajeSalida.setText("Presiona Jugar para iniciar \n Usa el botón (?) para ver las reglas del juego");
-        this.mensajeSalida.setBorder(BorderFactory.createTitledBorder("Mensajes"));
+        this.mensajeSalida.setText("Presiona Jugar para iniciar \n Cuando termines de colocar los barcos puedes empezar a disparar");
+        this.mensajeSalida.setBorder(BorderFactory.createTitledBorder("Atención"));
         this.mensajeSalida.setEditable(false);
         constraints.gridx = 0;
         constraints.gridy = 3;
@@ -247,7 +251,7 @@ public class GUI extends JFrame {
             }
 
             if (e.getSource() == GUI.this.ayuda) {
-                JOptionPane.showMessageDialog((Component)null, "Bienvenido a BattleShip \nOprime el boton 'Jugar' para iniciar el juego\n-El juego consiste en que deberás acabar con la flota enemiga sin verla\n-Posiciona tus barcos pulsando las casillas de tu territorio, teniendo en cuenta que:\n Deberás posicionar 4 fragatas, serán pintadas de color gris (1 casilla cada una)\n Deberás posicionar 3 destructores, serán pintadas de color verde (2 casilla cada una)\n Deberás posicionar 2 submarinos, serán pintadas de color magenta (3 casilla cada una)\n Deberás posicionar 1 portaaviones, serán pintadas de color carne  (4 casilla cada una)\n NOTA: para posicionar submarinos y portaaviones deberás hacerlo de forma ordenada (una tras otra)\n-Para hundir los barcos enemigos deberás usar las casillas del territorio enemigo\n Segun el numero de casillas del barco, podrás dañarlo o hundirlo\n Si se pinta de amarillo, faltan partes por hundir\n Si se pinta de rojo, has hundido ese barco\n-El juego termina cuando uno de los dos hunde todos los barcos del oponente\n-Podrás ver la matriz enemiga (territorio) si pulsas el boton 'Barcos enemigos'", "Instrucciones", 1);
+                JOptionPane.showMessageDialog((Component)null, "Bienvenido a BattleShip \n-El juego consiste en que deberás acabar con la flota enemiga sin verla\n-Posiciona tus barcos pulsando las casillas de tu territorio, teniendo en cuenta que:\n Deberás posicionar 4 fragatas, serán pintadas de color blanco (1 casilla cada una)\n Deberás posicionar 3 destructores, serán pintadas de color amarillo (2 casilla cada una)\n Deberás posicionar 2 submarinos, serán pintadas de color naranja (3 casilla cada una)\n Deberás posicionar 1 portaaviones, serán pintadas de color rosado  (4 casilla cada una)\n NOTA: para posicionar submarinos y portaaviones deberás hacerlo de forma ordenada (una tras otra)\n-Para hundir los barcos enemigos deberás usar las casillas del territorio enemigo\n Si sale una bomba, faltan partes por hundir\n Si sale una llama, has hundido ese barco\n-El juego termina cuando uno de los dos hunde todos los barcos del oponente\n", "Instrucciones", 1);
             }
 
         }
@@ -315,6 +319,8 @@ public class GUI extends JFrame {
 
                     GUI.this.modelGame.takePosition(GUI.this.lugar1, GUI.this.lugar0);
 
+
+
                     for(x = 0; x < tableroPos.length; ++x) {
                         for(y = 0; y < tableroPos[0].length; ++y) {
                             if (tableroPos[x][y] == 1) {
@@ -329,7 +335,10 @@ public class GUI extends JFrame {
                             if (tableroPos[x][y] == 2) {
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.GRAY);
+                                String imageFragataPath = "src/resources/1.png";
+                                ImageIcon imageFragataIcon = new ImageIcon(imageFragataPath);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.white);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setIcon(imageFragataIcon);
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -338,7 +347,10 @@ public class GUI extends JFrame {
                             if (tableroPos[x][y] == 3) {
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.GREEN);
+                                String imageDestructorPath = "src/resources/3.png";
+                                ImageIcon imageDestructorIcon = new ImageIcon(imageDestructorPath);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.yellow);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setIcon(imageDestructorIcon);
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -347,7 +359,10 @@ public class GUI extends JFrame {
                             if (tableroPos[x][y] == 4) {
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.MAGENTA);
+                                String imageSubmarinePath = "src/resources/2.png";
+                                ImageIcon imageSubmarineIcon = new ImageIcon(imageSubmarinePath);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.ORANGE);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setIcon(imageSubmarineIcon);
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -356,7 +371,11 @@ public class GUI extends JFrame {
                             if (tableroPos[x][y] == 5) {
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
+                                String imagePortaPath = "src/resources/3.png";
+                                ImageIcon imagePortaIcon = new ImageIcon(imagePortaPath);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.PINK);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setIcon(imagePortaIcon);
+
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -435,6 +454,7 @@ public class GUI extends JFrame {
                             if (tableroPpal[x][y] == 15) {
                                 var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
+
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setForeground(Color.RED);
                                 var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
@@ -444,7 +464,9 @@ public class GUI extends JFrame {
                             if (tableroPpal[x][y] > 15 && tableroPpal[x][y] < 100) {
                                 var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.YELLOW);
+                                String imageTocadoPath = "src/resources/tocado.png";
+                                ImageIcon imageTocadoIcon = new ImageIcon(imageTocadoPath);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setIcon(imageTocadoIcon);
                                 var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -453,7 +475,9 @@ public class GUI extends JFrame {
                             if (tableroPpal[x][y] >= 100) {
                                 var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.RED);
+                                String imageHundidoPath = "src/resources/hundido.png";
+                                ImageIcon imageHundidoIcon = new ImageIcon(imageHundidoPath);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setIcon(imageHundidoIcon);
                                 var10000 = GUI.this.label2;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -484,7 +508,9 @@ public class GUI extends JFrame {
                             if (tableroPos[x][y] > 15 && tableroPpal[x][y] < 100) {
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.YELLOW);
+                                String imageTocadoPath = "src/resources/tocado.png";
+                                ImageIcon imageTocadoIcon = new ImageIcon(imageTocadoPath);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setIcon(imageTocadoIcon);
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -493,7 +519,9 @@ public class GUI extends JFrame {
                             if (tableroPos[x][y] >= 100) {
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.RED);
+                                String imageHundidoPath = "src/resources/hundido.png";
+                                ImageIcon imageHundidoIcon = new ImageIcon(imageHundidoPath);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setIcon(imageHundidoIcon);
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -515,7 +543,7 @@ public class GUI extends JFrame {
                             if (tableroPos[x][y] == 2) {
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.GRAY);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.white);
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -524,7 +552,7 @@ public class GUI extends JFrame {
                             if (tableroPos[x][y] == 3) {
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.GREEN);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.yellow);
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
@@ -533,7 +561,7 @@ public class GUI extends JFrame {
                             if (tableroPos[x][y] == 4) {
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
-                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.MAGENTA);
+                                var10000[Integer.parseInt(var10001 + String.valueOf(y))].setBackground(Color.orange);
                                 var10000 = GUI.this.label;
                                 var10001 = String.valueOf(x);
                                 var10000[Integer.parseInt(var10001 + String.valueOf(y))].setOpaque(true);
